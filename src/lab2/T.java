@@ -2,24 +2,26 @@ package lab2;
 
 public class T extends Thread {
 	
-	private static Total tot;
+	private static Maximo tot;
 	private int id;
-	private int suma;
+	private int max;
 	private boolean termino;
 	private static int [][] M;
 	
 	private static void crearMatriz (int n){
 		M = new int [n][n];
+		int a = 0;
 		for (int i=0;i<n;i++){
 			for (int j=0;j<n;j++){
-				M[i][j]=1;
+				M[i][j]=a;
+				a++;
 			}
 		}
 	}
 	
 	public T (int pId){
 		id = pId;
-		suma = 0;
+		max = -1;
 		termino = false;
 	}
 	
@@ -27,16 +29,17 @@ public class T extends Thread {
 	{
 		int n = M[id].length;
 		for (int i=0; i<n; i++){
-			suma+=M[id][i];
+			int m = M[id][i];
+			if (m>max) max = m;
 		}
 		termino=true;
-		tot.anotar(suma);
+		tot.anotar(max);
 	}
 	
 	public static void main (String [] args){
 		int nThreads = 10;
 		crearMatriz(nThreads);
-		tot = new Total(nThreads);
+		tot = new Maximo(nThreads);
 		for (int i=0; i<nThreads; i++){
 			T nuevo = new T(i);
 			nuevo.start();
@@ -47,7 +50,7 @@ public class T extends Thread {
 				break;
 			}
 		}
-		System.out.println(tot.darTotal());
+		System.out.println(tot.darMax());
 	}
 	
 }
