@@ -5,8 +5,8 @@ public class Semaforo {
 
 	int contador;
 	
-	public Semaforo(){
-		contador = 0;
+	public Semaforo( int n ){
+		contador = n;
 
 	}
 
