@@ -6,7 +6,8 @@ public class Canal {
 	int contenido;
 
 	public Canal(){
-
+		ocupado = false;
+		contenido = -1;
 	}
 
 	public synchronized void enviar(int n) throws InterruptedException{

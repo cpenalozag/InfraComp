@@ -14,6 +14,7 @@ public class Consumidor extends Thread {
 	{
 		try {
 			this.n = c.recibir();
+			System.out.println(n);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
